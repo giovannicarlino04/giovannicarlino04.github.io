@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>Portfolio - Giovanni Carlino</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <section class="header">
+            <nav>
+                <a href="index.html"><a>Giovanni Carlino</a></a>
+                    <div class="nav-links" id="navLinks">
+                        <i class="fa fa-times" onclick="hideMenu()"></i>
+                        <ul>
+                                <li><a href="#">HOME</a></li>
+                                <li><a href="#about" >ABOUT</a></li>
+                                <li><a href="#contact">CONTACTS</a></li>
+                            </ul>
+                    </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+                <div class="text-box">
+                    <h1>Software/Web Developer</h1>
+                    <p>I'm a software/web developer, I love everything related to computers</p>
+                    <a href="#contact" class="hero-btn">Contact me</a>
+                </div>
+        </section>
+        <section class="about" id="about">
+            <h1>About Me</h1>
+            <p>Intermediate level software developer with over 4 years of experience. Areas of expertise include C#, Visual Basic, Python, HTML and CSS, an excellent grasp of the English language, good reverse engineering and problem solving skills.</p>
+        </section>
+        <section class="contact" id="contact">
+            <h1>Contacts</h1>
+            <p>Email: carlinogiovanni04@gmail.com</p>
+            <p>Phone: +39 3519060167</p>
+        </section>
+        <script>
+            var navLinks = document.getElementById("navLinks")
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
+    </body>
+</html>
