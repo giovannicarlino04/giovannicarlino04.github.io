@@ -441,18 +441,31 @@
       </div>
     </div>
   </section>
-
-  <!-- CONTATTI -->
   
-  <section id="contact">
+  <!-- CONTATTI -->
+    <section id="contact">
     <h2 class="fade">Contattami</h2>
-    <form class="contact-form fade" action="sendmail.php" method="POST">
-        <input type="text" name="name" placeholder="Il tuo nome" required>
-        <input type="email" name="email" placeholder="La tua email" required>
-        <textarea name="message" rows="4" placeholder="Il tuo messaggio" required></textarea>
+    <form class="contact-form fade" onsubmit="sendEmail(event)">
+        <input type="text" id="name" placeholder="Il tuo nome" required>
+        <input type="email" id="email" placeholder="La tua email" required>
+        <textarea id="message" rows="4" placeholder="Il tuo messaggio" required></textarea>
         <button type="submit">Invia</button>
-      </form>
+    </form>
   </section>
+  
+  <script>
+    function sendEmail(event) {
+        event.preventDefault();
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let message = document.getElementById('message').value;
+        
+        let mailtoLink = `mailto:tuo@email.com?subject=Messaggio da ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AContatto: ${encodeURIComponent(email)}`;
+        
+        window.location.href = mailtoLink;
+    }
+  </script>
+  
 
   
   <!-- FOOTER -->
