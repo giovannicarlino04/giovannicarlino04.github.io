@@ -1,51 +1,504 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="with=device-width, initial-scale=1.0">
-        <title>Portfolio - Giovanni Carlino</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body class="body" id="body">
-        <section class="header">
-            <nav>
-                <a href="index.html"><a>Giovanni Carlino</a></a>
-                    <div class="nav-links" id="navLinks">
-                        <i class="fa fa-times" onclick="hideMenu()"></i>
-                        <ul>
-                                <li><a href="#">HOME</a></li>
-                                <li><a href="#about" >ABOUT</a></li>
-                                <li><a href="#contact">CONTACTS</a></li>
-                            </ul>
-                    </div>
-                <i class="fa fa-bars" onclick="showMenu()"></i>
-            </nav>
-                <div class="text-box">
-                    <h1>Software/Web Developer</h1>
-                    <p>I'm a software/web developer, I love everything related to computers</p>
-                    <a href="#contact" class="hero-btn">Contact me</a>
-                </div>
-        </section>
-        <section class="about" id="about">
-            <h1>About Me</h1>
-            <p>Intermediate level software/web developer with over 4 years of experience. Areas of expertise include C#, Visual Basic, Python, HTML and CSS, an excellent grasp of the English language, good reverse engineering and problem solving skills.</p>
-        </section>
-        <section class="contact" id="contact">
-            <h1>Contacts</h1>
-            <p>Email: carlinogiovanni04@gmail.com</p>
-            <p>Phone: +39 3519060167</p>
-        </section>
-        <script>
-            var navLinks = document.getElementById("navLinks")
-            function showMenu(){
-                navLinks.style.right = "0";
-            }
-            function hideMenu(){
-                navLinks.style.right = "-200px";
-            }
-        </script>
-    </body>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio Dark - Giovanni Carlino</title>
+  <!-- Google Fonts: Poppins per uno stile moderno ed elegante -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <!-- Devicon per le icone dei linguaggi -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <style>
+    /* RESET & GLOBAL */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      background: #0d0d0d;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    :root {
+      --bg: #0d0d0d;
+      --header-bg: rgba(0, 0, 0, 0.85);
+      --text-color: #e0e0e0;
+      --accent: #eb3e2b;      /* Neon rosso */
+      --accent2: #4c0000;     /* Rosso scuro */
+    
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--header-bg);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      transition: padding 0.3s;
+    }
+    header.scrolled {
+      padding: 0.5rem 2rem;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 8px var(--accent);
+    }
+
+    /* Hamburger per mobile */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: var(--text-color);
+      margin-bottom: 4px;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 200px;
+        background: var(--header-bg);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+        transition: right 0.3s ease;
+      }
+      nav ul li {
+        margin: 1rem 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+      header.active nav ul {
+        right: 0;
+      }
+    }
+
+    /* HERO */
+    #hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #1e1e1e, #3e0000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 0 1rem;
+    }
+    #hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    #hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-shadow: 0 0 20px var(--accent);
+      animation: neonGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes neonGlow {
+      from {
+        text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
+      }
+      to {
+        text-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent), 0 0 40px var(--accent);
+      }
+    }
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+    .btn {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* SEZIONI */
+    section {
+      padding: 100px 20px;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+      position: relative;
+    }
+    section h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+    }
+    section p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    /* PROGETTI */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      width: 90%;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+    .project-image {
+      width: 100%;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+    .project-content {
+      padding: 1rem;
+    }
+    .project-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .project-content p {
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    /* SEZIONE LINGUAGGI */
+    #languages {
+      padding: 100px 20px;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .languages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      width: 90%;
+      margin-top: 2rem;
+      justify-items: center;
+    }
+    .language-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .language-card:hover {
+      transform: scale(1.1);
+    }
+    .language-card i,
+    .language-card .asm-icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color:#e0e0e0;
+
+    }
+    .language-card p {
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+    .asm-icon {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* CONTATTI */
+    .contact-form {
+      width: 90%;
+      max-width: 500px;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+    .contact-form:hover {
+      transform: translateY(-3px);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #333;
+      border-radius: 5px;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      background: #222;
+      color: var(--text-color);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 5px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .contact-form button:hover {
+      transform: scale(1.02);
+      background: var(--accent2);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0d0d0d;
+      color: var(--text-color);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Effetto Fade In on Scroll */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="nav-container">
+      <div class="logo">Giovanni Carlino</div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <nav id="nav">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">Chi sono</a></li>
+          <li><a href="#projects">Progetti</a></li>
+          <li><a href="#languages">Linguaggi</a></li>
+          <li><a href="#contact">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>MAKE YOUR DREAMS COME TRUE</h1>
+      <p>Con un sito web o software realizzato appositamente per il tuo team</p>
+      <button class="btn" onclick="scrollToSection('about')">Scopri di più</button>
+    </div>
+  </section>
+
+  <!-- CHI SONO -->
+  <section id="about">
+    <h2 class="fade">Chi Sono</h2>
+    <p class="fade">
+      Sono Giovanni Carlino, uno sviluppatore appassionato di design e tecnologie innovative. Trasformo idee in realtà vibranti e dinamiche.
+    </p>
+  </section>
+
+  <!-- LINGUAGGI -->
+  <section id="languages">
+    <h2 class="fade">Linguaggi</h2>
+    <div class="languages-grid fade">
+      <div class="language-card">
+        <i class="devicon-csharp-plain"></i>
+        <p>C#</p>
+      </div>
+      <div class="language-card">
+        <div style="display: flex; gap: 5px; justify-content: center;">
+          <i class="devicon-c-plain"></i>
+          <i class="devicon-cplusplus-plain"></i>
+        </div>
+        <p>C/C++</p>
+      </div>
+      <div class="language-card">
+        <span class="asm-icon">ASM</span>
+        <p>ASM x86</p>
+      </div>
+      <div class="language-card">
+        <i class="devicon-python-plain"></i>
+        <p>Python</p>
+      </div>
+      <div class="language-card">
+        <i class="devicon-html5-plain"></i>
+        <p>HTML</p>
+      </div>
+      <div class="language-card">
+        <i class="devicon-css3-plain"></i>
+        <p>CSS</p>
+      </div>
+      <div class="language-card">
+        <i class="devicon-javascript-plain"></i>
+        <p>JavaScript</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  
+  <section id="contact">
+    <h2 class="fade">Contattami</h2>
+    <form class="contact-form fade" action="sendmail.php" method="POST">
+        <input type="text" name="name" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <textarea name="message" rows="4" placeholder="Il tuo messaggio" required></textarea>
+        <button type="submit">Invia</button>
+      </form>
+  </section>
+
+  
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Giovanni Carlino. Tutti i diritti riservati.</p>
+  </footer>
+
+  <script>
+    // Hamburger menu per mobile
+    const hamburger = document.getElementById('hamburger');
+    const header = document.getElementById('header');
+    hamburger.addEventListener('click', () => {
+      header.classList.toggle('active');
+    });
+
+    // Smooth scrolling tra le sezioni
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Cambia stile dell'header al superamento di 50px di scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer per l'effetto Fade In
+    const faders = document.querySelectorAll('.fade');
+    const appearOptions = {
+      threshold: 0.2
+    };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
 </html>
