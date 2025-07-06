@@ -1,4 +1,4 @@
-// Wait for the DOM to load
+
 document.addEventListener('DOMContentLoaded', () => {
     // Preloader
     const preloader = document.querySelector('.preloader');
